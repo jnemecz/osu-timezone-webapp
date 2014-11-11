@@ -29,7 +29,7 @@ public class AppController {
     public
     @ResponseBody
     ArrayList<ActualTime> getRandom() throws IOException {
-        return tzb.getRandom();
+        return tzb.getRandom(Service.RANDOM_ITEMS_COUNT);
     }
 
     @RequestMapping(value = "/getActive", method = RequestMethod.GET)

@@ -8,6 +8,7 @@ import java.util.*;
 public class Service implements IService {
 
     private HashMap<String, TimeZone> timeZones;
+    public static final int RANDOM_ITEMS_COUNT = 5;
 
     public Service() {
         timeZones = new HashMap<String, TimeZone>();
@@ -78,7 +79,11 @@ public class Service implements IService {
     }
 
     @Override
-    public ArrayList<ActualTime> getRandom() {
+    public ArrayList<ActualTime> getRandom(int count) {
+
+        if (count > RANDOM_ITEMS_COUNT || count < 1) {
+            count = RANDOM_ITEMS_COUNT;
+        }
 
         ArrayList<ActualTime> times = new ArrayList<ActualTime>();
         Random rand = new Random();
@@ -88,10 +93,10 @@ public class Service implements IService {
         int randomNum;
 
         do {
-            randomNum = rand.nextInt(tzs.length + 1);
+            randomNum = rand.nextInt(tzs.length);
             TimeZone tz = TimeZone.getTimeZone(tzs[randomNum]);
             times.add(ActualTime.create(tz));
-        } while (times.size() < 10);
+        } while (times.size() <= count);
 
         return times;
 

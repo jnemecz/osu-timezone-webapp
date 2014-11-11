@@ -43,6 +43,6 @@ public interface IService {
      *
      * @return
      */
-    ArrayList<ActualTime> getRandom();
+    ArrayList<ActualTime> getRandom(int count);
 
 }
